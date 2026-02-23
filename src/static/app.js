@@ -31,6 +31,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Initialize theme from localStorage
   function initializeTheme() {
+    if (!themeIcon) return;
+    
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme === "dark") {
       document.body.classList.add("dark-mode");
@@ -56,7 +58,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Add event listener for theme toggle
-  themeToggle.addEventListener("click", toggleTheme);
+  if (themeToggle) {
+    themeToggle.addEventListener("click", toggleTheme);
+  }
 
   // Initialize theme on page load
   initializeTheme();
