@@ -513,7 +513,11 @@ document.addEventListener("DOMContentLoaded", () => {
         const emailBody = encodeURIComponent(
           `${shareText}\n\nSchedule: ${formatSchedule(activity)}\n\nLearn more: ${shareUrl}`
         );
-        window.open(`mailto:?subject=${emailSubject}&body=${emailBody}`);
+        window.open(
+          `mailto:?subject=${emailSubject}&body=${emailBody}`,
+          "_blank",
+          "noopener,noreferrer"
+        );
         break;
 
       case "facebook":
@@ -526,7 +530,7 @@ document.addEventListener("DOMContentLoaded", () => {
         );
         break;
 
-      case "twitter":
+      case "x":
         const twitterText = encodeURIComponent(shareText);
         window.open(
           `https://x.com/intent/tweet?text=${twitterText}&url=${encodeURIComponent(
@@ -601,7 +605,7 @@ document.addEventListener("DOMContentLoaded", () => {
           📘
           <span class="tooltip-text">Share on Facebook</span>
         </button>
-        <button class="share-button tooltip" data-activity="${name}" data-share-type="twitter" title="Share on X">
+        <button class="share-button tooltip" data-activity="${name}" data-share-type="x" title="Share on X">
           🐦
           <span class="tooltip-text">Share on X</span>
         </button>
