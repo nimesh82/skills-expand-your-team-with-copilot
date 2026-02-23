@@ -601,9 +601,9 @@ document.addEventListener("DOMContentLoaded", () => {
           📘
           <span class="tooltip-text">Share on Facebook</span>
         </button>
-        <button class="share-button tooltip" data-activity="${name}" data-share-type="twitter" title="Share on Twitter">
+        <button class="share-button tooltip" data-activity="${name}" data-share-type="twitter" title="Share on X">
           🐦
-          <span class="tooltip-text">Share on Twitter</span>
+          <span class="tooltip-text">Share on X</span>
         </button>
       </div>
     `;
