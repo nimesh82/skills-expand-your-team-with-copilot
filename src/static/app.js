@@ -486,14 +486,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
     switch (shareType) {
       case "copy":
-        navigator.clipboard
-          .writeText(shareUrl)
-          .then(() => {
-            showMessage("Link copied to clipboard!", "success");
-          })
-          .catch(() => {
-            showMessage("Failed to copy link", "error");
-          });
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard
+            .writeText(shareUrl)
+            .then(() => {
+              showMessage("Link copied to clipboard!", "success");
+            })
+            .catch(() => {
+              showMessage(
+                "Failed to copy link. Please copy manually: " + shareUrl,
+                "error"
+              );
+            });
+        } else {
+          showMessage(
+            "Clipboard not available. Copy this link: " + shareUrl,
+            "info"
+          );
+        }
         break;
 
       case "email":
@@ -511,17 +521,19 @@ document.addEventListener("DOMContentLoaded", () => {
           `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
             shareUrl
           )}`,
-          "_blank"
+          "_blank",
+          "noopener,noreferrer"
         );
         break;
 
       case "twitter":
         const twitterText = encodeURIComponent(shareText);
         window.open(
-          `https://twitter.com/intent/tweet?text=${twitterText}&url=${encodeURIComponent(
+          `https://x.com/intent/tweet?text=${twitterText}&url=${encodeURIComponent(
             shareUrl
           )}`,
-          "_blank"
+          "_blank",
+          "noopener,noreferrer"
         );
         break;
     }
